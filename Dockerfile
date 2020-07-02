@@ -26,4 +26,8 @@ RUN mkdir /opt/app2
 
 ADD https://github.com/ValeriyDevPro/docker-mc/archive/p11.tar.gz /opt/app2
 
+RUN mkdir /opt/app3
+
+ADD ./p11.tar.gz /opt/app3/
+
 ENTRYPOINT [ "bash", "/bin/entrypoint" ]
