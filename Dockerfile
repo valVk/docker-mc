@@ -22,4 +22,8 @@ COPY ./entrypoint.sh /bin/entrypoint
 
 COPY --from=builder /root/.ssh/ /root/.ssh/
 
+RUN mkdir /opt/app2
+
+ADD https://github.com/ValeriyDevPro/docker-mc/archive/p11.tar.gz /opt/app2
+
 ENTRYPOINT [ "bash", "/bin/entrypoint" ]
