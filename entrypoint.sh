@@ -1,1 +1,2 @@
-DEBUG=myapp:* npm start
+npm i \
+&& DEBUG=myapp:* npm start
