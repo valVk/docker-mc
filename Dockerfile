@@ -13,4 +13,6 @@ RUN express
 
 RUN npm i
 
-ENTRYPOINT [ "npm", "start" ]
+COPY ./entrypoint.sh /bin/entrypoint
+
+ENTRYPOINT [ "bash", "/bin/entrypoint" ]
