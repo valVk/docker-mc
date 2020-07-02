@@ -1,0 +1,12 @@
+version: '3.0'
+services:
+  docker-mc:
+    build: ./
+    image: docker-mc
+    container_name: docker-mc
+    working_dir: /opt/app
+    ports:
+      - "3000:3000"
+      - "127.0.0.1:3001:3000"
+    volumes:
+      - ./app:/opt/app
