@@ -10,3 +10,21 @@ services:
       - "127.0.0.1:3001:3000"
     volumes:
       - ./app:/opt/app
+    networks:
+      - dmc-network
+  docker-mc-db:
+    image: postgres:11-alpine
+    restart: "no"
+    container_name: docker-mc-db
+    environment:
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: pgdb
+      POSTGRES_USER: pguser
+    ports:
+      - "5432:5432"
+    networks:
+      - dmc-network
+networks:
+  dmc-network:
+    driver: bridge
+      

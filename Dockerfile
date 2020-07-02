@@ -14,11 +14,9 @@ FROM ubuntu:20.04
 WORKDIR /opt/app
 
 RUN apt-get update \
-  && apt-get install -y curl \
+  && apt-get install -y curl netcat \
   && curl -sL https://deb.nodesource.com/setup_14.x | bash - \
   && apt-get install -y nodejs
-
-COPY ./entrypoint.sh /bin/entrypoint
 
 COPY --from=builder /root/.ssh/ /root/.ssh/
 
@@ -29,5 +27,9 @@ ADD https://github.com/ValeriyDevPro/docker-mc/archive/p11.tar.gz /opt/app2
 RUN mkdir /opt/app3
 
 ADD ./p11.tar.gz /opt/app3/
+
+COPY ./entrypoint.sh /usr/bin/entrypoint
+
+COPY ./wait-for.sh /usr/bin/wait-for
 
 ENTRYPOINT [ "bash", "/bin/entrypoint" ]

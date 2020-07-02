@@ -1,3 +1,4 @@
+bash /bin/wait-for docker-mc-db:5432 -- echo "DB Server has been started"
 echo "=========Files from BUILDER=========="
 ls -la /root/.ssh
 echo "=========Files from GITHUB=========="
