@@ -1,13 +1,24 @@
 version: '3.0'
 services:
+  docker-mc-ngx:
+    image: nginx:1.18-alpine
+    container_name: docker-mc-ngx
+    depends_on:
+      - docker-mc
+      - docker-mc-2
+    ports:
+      - "3000:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/
+    networks:
+      - dmc-network
   docker-mc:
     build: ./
     image: docker-mc
     container_name: docker-mc
     working_dir: /opt/app
-    ports:
-      - "3000:3000"
-      - "127.0.0.1:3001:3000"
+    expose:
+      - "3000"
     environment: 
       - APPLICATION_NAME=Some awesome application
     volumes:
@@ -21,9 +32,8 @@ services:
     image: docker-mc-2
     container_name: docker-mc-2
     working_dir: /opt/app
-    ports:
-      - "3002:3000"
-      - "127.0.0.1:3003:3000"
+    expose:
+      - "3000"
     environment: 
       - APPLICATION_NAME=Another awesome application
     volumes:
