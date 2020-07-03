@@ -12,6 +12,8 @@ services:
       - ./app:/opt/app
     networks:
       - dmc-network
+    depends_on:
+      - docker-mc-db
   docker-mc-db:
     image: postgres:11-alpine
     restart: "no"
