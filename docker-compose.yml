@@ -16,6 +16,22 @@ services:
       - dmc-network
     depends_on:
       - docker-mc-db
+  docker-mc-2:
+    build: ./
+    image: docker-mc-2
+    container_name: docker-mc-2
+    working_dir: /opt/app
+    ports:
+      - "3002:3000"
+      - "127.0.0.1:3003:3000"
+    environment: 
+      - APPLICATION_NAME=Another awesome application
+    volumes:
+      - ./app:/opt/app
+    networks:
+      - dmc-network
+    depends_on:
+      - docker-mc-db
   docker-mc-db:
     image: postgres:11-alpine
     restart: "no"
